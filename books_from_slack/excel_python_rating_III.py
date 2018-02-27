@@ -1,6 +1,8 @@
 import pandas as pd
 from urllib.parse import urlencode, quote_plus
 import requests
+import warnings
+warnings.filterwarnings("ignore")
 base_url="https://docs.google.com/spreadsheets/d"
 sheet_key="1HMn7uA8CwfBoWuDkiJkVomkKkoOVXyIm-vKFZlISotk"
 sheet_id="2026966465"
@@ -15,7 +17,7 @@ encoded = urlencode(payload, quote_via=quote_plus)
 sheet_url = "/".join([base_url,sheet_key,service]) + encoded
 
 #print (sheet_url)
-r = requests.get(url=sheet_url)
+r = requests.get(url=sheet_url, verify = False)
 print(r.text)
 
 #from io import StringIO
