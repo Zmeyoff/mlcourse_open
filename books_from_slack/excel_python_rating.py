@@ -1,6 +1,8 @@
 import pandas as pd
 from urllib.parse import urlencode, quote_plus
 import requests
+import warnings
+warnings.filterwarnings("ignore")
 base_url="https://docs.google.com/spreadsheets/d"
 sheet_key="1NSdcHzMy_KoFx6hSZUuXUTwW5X6xsFY-POW2wQ4jjjs"
 sheet_id="1465042576"
@@ -15,8 +17,8 @@ encoded = urlencode(payload, quote_via=quote_plus)
 sheet_url = "/".join([base_url,sheet_key,service]) + encoded
 
 #print (sheet_url)
-r = requests.get(url=sheet_url)
+r = requests.get(url=sheet_url, verify = False)
 print(r.text)
 
-from io import StringIO
-pd.read_csv(StringIO(r.text))
+#from io import StringIO
+#pd.read_csv(StringIO(r.text))
